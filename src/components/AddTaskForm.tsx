@@ -3,6 +3,7 @@ import type { Status, Todo } from "../types/index";
 import '../styles.css';
 import AppTitle from './AppTitle'
 import Dropdown from "./Dropdown";
+import classNames from "classnames";
 
 interface Props {
   onCancel: () => void;
@@ -94,9 +95,10 @@ const AddTaskForm: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) 
         </button>
 
         <button
-          className="primaryBtn"
+          className={classNames("primaryBtn",{
+            "disabledBtn": !title.trim() || !description.trim()
+          })}
           onClick={handleSubmit}
-          title="Fill all the fields"
         >
           {editingTodo ? "Update" : "Add"}
         </button>
