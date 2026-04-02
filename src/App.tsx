@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Todo } from "./types/index";
-import TodoList from "./components/TodoList";
-import AddTodo from "./components/AddTodo";
+import TaskList from "./components/TaskList";
+import AddTaskForm from "./components/AddTaskForm";
 import "./styles.css";
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="container">
       {view === "listView" ? (
-        <TodoList
+        <TaskList
           todoList={todos}
           onAddClick={() => {
             setEditingTodo(null);
@@ -66,7 +66,7 @@ function App() {
           onDeleteTodo={deleteTodo}
         />
       ) : (
-        <AddTodo
+        <AddTaskForm
           onCancel={() => {
             setEditingTodo(null);
             setView("listView");

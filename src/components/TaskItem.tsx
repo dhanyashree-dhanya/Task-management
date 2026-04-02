@@ -5,7 +5,7 @@ import Trash from "../assets/Trash.png";
 import '../styles.css';
 import classNames from "classnames";
 
-const SingleTodoItem: React.FC<{ todo: TodoItem; onEdit: () => void; onDelete: (id: number) => void }> = ({ todo, onEdit, onDelete }) => {
+const TaskItem: React.FC<{ todo: TodoItem; onEdit: () => void; onDelete: (id: number) => void }> = ({ todo, onEdit, onDelete }) => {
 
   const formatTodoDate = (id: number) => {
     const date = new Date(id);
@@ -22,7 +22,7 @@ const SingleTodoItem: React.FC<{ todo: TodoItem; onEdit: () => void; onDelete: (
 
   return (
     <> 
-    <div className="todo-item">
+    <div className={classNames("todo-item", { completed: (todo?.status === "completed") })}>
         <div className="icon">
           {todo && todo.title && todo.title[0] || "-"}
           </div>
@@ -57,4 +57,4 @@ const SingleTodoItem: React.FC<{ todo: TodoItem; onEdit: () => void; onDelete: (
   );
 };
 
-export default SingleTodoItem;
+export default TaskItem;

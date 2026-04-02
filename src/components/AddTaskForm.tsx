@@ -22,10 +22,10 @@ interface Props {
 
 
 
-const AddTodo: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) => {
+const AddTaskForm: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) => {
   const [title, setTitle] = useState(editingTodo?.title ?? "");
   const [description, setDescription] = useState(editingTodo?.description ?? "");
-  const [status, setStatus] = useState<Status>(editingTodo?.status ?? "in-progress");
+  const [status, setStatus] = useState<Status>(editingTodo?.status ?? "pending");
 
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const AddTodo: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) => {
     } else {
       setTitle("");
       setDescription("");
-      setStatus("in-progress");
+      setStatus("pending");
     }
   }, [editingTodo]);
 
@@ -104,4 +104,4 @@ const AddTodo: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) => {
   );
 };
 
-export default AddTodo;
+export default AddTaskForm;

@@ -104,14 +104,29 @@ textarea:focus,.input:focus {
   margin-bottom: 6px;
   border-radius: 4px;
   width: auto;
-font-family: Jost,sans-serif;
-font-weight: 400;
-font-style: Regular;
-font-size: 12px;
-line-height: 100%;
-letter-spacing: 0%;
-color: #231F20;
+  font-family: Jost,sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #231F20;
 }
+
+.todo-item.completed {
+  background: #f4f8f2;
+  opacity: 0.85;
+}
+
+.todo-item.completed .todo-item-title,
+.todo-item.completed .todo-item-description {
+  color: #6b7e6b;
+}
+
+.todo-item.completed .todo-item-title {
+  text-decoration: line-through;
+}
+
 
 .todo-item-header{
   border-bottom: none;
@@ -228,7 +243,7 @@ color: #231F20;
   border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
-  z-index: 10;
+  z-index: 100;
   list-style: none;
   padding: 4px 0;
   margin: 0;
@@ -244,6 +259,34 @@ color: #231F20;
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: url("./assets/cursor_icon.png") 8 8, pointer;
+  font-family: Jost, sans-serif;
+  font-size: 12px;
+  color: #222;
+}
+
+/* Reduce macOS native button styling and select defaults */
+.custom-select-trigger,
+.custom-option,
+.todo-header button,
+input,
+textarea,
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.custom-select-trigger {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: none;
+}
+
+.custom-option:hover,
+.custom-option.selected {
+  background: #f0f4ff;
   cursor: url("./assets/cursor_icon.png") 8 8, pointer;
 }
 
@@ -335,6 +378,53 @@ color: #231F20;
   justify-content: space-between;
   gap: 8px;
   margin: 16px 0;
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 12px;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9fb;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.filter-btn.active {
+  color: #fff;
+  background: #0b4ea2;
+  border-color: #0b4ea2;
+}
+
+.filter-btn:hover {
+  background: #e7eaf8;
+}
+
+.filter-list {
+  width: 100%;
+}
+
+.empty-state {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.no-tasks-message {
+  color: #555;
+  font-size: 13px;
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px dashed #ddd;
+  margin-top: 8px;
 }
 
 
