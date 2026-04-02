@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import type { Status, Todo } from "../types/index";
 import '../styles.css';
 import AppTitle from './AppTitle'

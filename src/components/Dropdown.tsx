@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import type { Status, Todo } from "../types/index";
+import type { Status } from "../types/index";
 import '../styles.css';
 import dropdownIcon from "../assets/Vector.png";
 import { STATUS_OPTIONS } from "../constants";
