@@ -111,7 +111,36 @@ textarea:focus,.input:focus {
   line-height: 100%;
   letter-spacing: 0%;
   color: #231F20;
+  opacity: 1;
+  transform: translateY(0);
+  transition: background-color 250ms ease;
+  animation: item-enter 350ms ease;
 }
+
+.todo-item.updated {
+  animation: item-update 900ms ease;
+}
+
+.todo-item.removing {
+  animation: item-removing 350ms ease forwards;
+}
+
+@keyframes item-enter {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes item-update {
+  0% { background-color: #fff; }
+  50% { background-color: #e7f2ff; }
+  100% { background-color: #fff; }
+}
+
+@keyframes item-removing {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(24px) scale(0.96); }
+}
+
 
 .todo-item.completed {
   background: #f4f8f2;
@@ -254,7 +283,7 @@ textarea:focus,.input:focus {
   width: 100%;
   text-align: left;
   border: none;
-  background: none;
+  background: none !important;
   padding: 8px 10px;
   display: flex;
   align-items: center;
@@ -263,7 +292,27 @@ textarea:focus,.input:focus {
   font-family: Jost, sans-serif;
   font-size: 12px;
   color: #222;
+  -webkit-appearance: none;
+  appearance: none;
 }
+
+.custom-option.selected {
+  background: #f0f4ff !important;
+}
+
+.custom-select-trigger {
+  background: #fff !important;
+  border-color: #ddd !important;
+}
+
+.custom-select-trigger:focus,
+.custom-select-trigger:hover,
+.custom-option:focus,
+.custom-option:hover {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 
 /* Reduce macOS native button styling and select defaults */
 .custom-select-trigger,

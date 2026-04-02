@@ -96,6 +96,7 @@ const AddTaskForm: React.FC<Props> = ({ onCancel, onAdd, onSave, editingTodo }) 
         <button
           className="primaryBtn"
           onClick={handleSubmit}
+          title="Fill all the fields"
         >
           {editingTodo ? "Update" : "Add"}
         </button>

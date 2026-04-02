@@ -7,6 +7,8 @@ import "./styles.css";
 function App() {
   const [view, setView] = useState<"listView" | "addView">("listView");
   const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
+  const [updatedTodoId, setUpdatedTodoId] = useState<number | null>(null);
+  const [removingTodoId, setRemovingTodoId] = useState<number | null>(null);
   const [todos, setTodos] = useState<Todo[]>(() => {
     const storedTodos = localStorage.getItem("todos");
     if (storedTodos) {
@@ -39,12 +41,18 @@ function App() {
 
   const updateTodo = (todo: Todo) => {
     setTodos((prev) => prev.map((value) => (value.id === todo.id ? todo : value)));
+    setUpdatedTodoId(todo.id);
+    setTimeout(() => setUpdatedTodoId(null), 700);
     setEditingTodo(null);
     setView("listView");
   };
 
   const deleteTodo = (id: number) => {
-    setTodos((prev) => prev.filter((value) => value.id !== id));
+    setRemovingTodoId(id);
+    setTimeout(() => {
+      setTodos((prev) => prev.filter((value) => value.id !== id));
+      setRemovingTodoId(null);
+    }, 350);
   };
 
 
@@ -64,6 +72,8 @@ function App() {
           }}
           onEditTodo={onEditTodo}
           onDeleteTodo={deleteTodo}
+          updatedTodoId={updatedTodoId}
+          removingTodoId={removingTodoId}
         />
       ) : (
         <AddTaskForm

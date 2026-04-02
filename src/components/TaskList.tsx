@@ -10,11 +10,13 @@ interface Props {
   onAddClick: () => void;
   onEditTodo: (todo: Todo) => void;
   onDeleteTodo: (id: number) => void;
+  updatedTodoId?: number | null;
+  removingTodoId?: number | null;
 }
 
 type FilterMode = "all" | "completed" | "incomplete";
 
-const TaskList: React.FC<Props> = ({ todoList, onAddClick, onEditTodo, onDeleteTodo }) => {
+const TaskList: React.FC<Props> = ({ todoList, onAddClick, onEditTodo, onDeleteTodo, updatedTodoId, removingTodoId }) => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FilterMode>("all");
 
@@ -59,18 +61,24 @@ const TaskList: React.FC<Props> = ({ todoList, onAddClick, onEditTodo, onDeleteT
             items={filtered.filter((value) => value.status === "in-progress")}
             onEditTodo={onEditTodo}
             onDeleteTodo={onDeleteTodo}
+            updatedTodoId={updatedTodoId}
+            removingTodoId={removingTodoId}
           />}
           {(filter === "all" || filter === "incomplete") && <Section title="Pending" 
             defaultOpen={false}
             items={filtered.filter((value) => value.status === "pending")}
             onEditTodo={onEditTodo}
             onDeleteTodo={onDeleteTodo}
+            updatedTodoId={updatedTodoId}
+            removingTodoId={removingTodoId}
           />}
           {(filter === "all" || filter === "completed") && <Section title="Completed" 
             defaultOpen={false}
             items={filtered.filter((value) => value.status === "completed")}
             onEditTodo={onEditTodo}
             onDeleteTodo={onDeleteTodo}
+            updatedTodoId={updatedTodoId}
+            removingTodoId={removingTodoId}
           />}
         </>
       }
@@ -89,12 +97,16 @@ const Section: React.FC<{
   onEditTodo: (todo: Todo) => void ;
   onDeleteTodo: (id: number) => void;
   defaultOpen?: boolean;
+  updatedTodoId?: number | null;
+  removingTodoId?: number | null;
 }> = ({
   title,
   items,
   onEditTodo,
   onDeleteTodo,
-  defaultOpen = false
+  defaultOpen = false,
+  updatedTodoId,
+  removingTodoId,
 }) => {
   const [open, setOpen] = useState(defaultOpen);
 
@@ -117,6 +129,8 @@ const Section: React.FC<{
               todo={todo} 
               onEdit={() => onEditTodo(todo)} 
               onDelete={() => onDeleteTodo(todo.id)}
+              isUpdated={updatedTodoId === todo.id}
+              isRemoving={removingTodoId === todo.id}
             />
           ))
         ) : (
